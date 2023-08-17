@@ -1,8 +1,9 @@
-const text = "This is a test - and it should be stored in a file!";
+import { Application } from "https://deno.land/x/oak/mod.ts";
 
-const encoder = new TextEncoder();
-const data = encoder.encode(text);
+const app = new Application();
 
-Deno.writeFile("message.txt", data).then(() => {
-  console.log("Wrote to file!");
+app.use((ctx) => {
+  ctx.response.body = "Hello World!";
 });
+
+await app.listen({ port: 8000 });
